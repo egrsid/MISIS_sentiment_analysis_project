@@ -7,23 +7,25 @@
 	<title>MISIS_sentiment_analysis_project</title>
 </head>
 <body bgcolor="#eaded2">
-	<div class="semi-circle-container">
-		<div class="content"> Узнай эмоцию </div>
-		<div class="inner-semi-circle">
-			<div class="input-container">
+	<div class="semi-circle-container" id="myRectangle">
+		<div class="content" id="myContent"> Узнай эмоцию </div>
+		<div class="inner-semi-circle" id="myInner">
+			<div class="input-container" id="myForm">
       		<input type="text" class="text-input" placeholder="Введите текст...">
-    		</div>
-    		<button class="mainbtn">
+      		<button class="mainbtn" id="enter" onclick="toggleExpand()">
   				<img src="icon.png" width="200%" height="200%" class="btnicon">
 			</button>
+    		</div>
 		</div>
+		<div id="hiddenBlock" class="hidden">Твоя эмоция ---> </div>
 	</div>
-  		<button class="infobtn" onclick="toggleUniversalPopup()">
+  		<button class="infobtn" id="info">
     		i
   		</button>
-  		<button class="storybtn" onclick="toggleUniversalPopup()">
-    		<img src="icon.png" width="200%" height="200%" class="storyicon">
+  		<button class="storybtn" id="story">
+    		<img src="menu.png" width="200%" height="200%" class="storyicon">
   		</button>
-</div>
+	
+	<script src="script.js"></script>
 </body>
 </html>
