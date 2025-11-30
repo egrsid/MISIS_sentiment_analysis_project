@@ -17,15 +17,26 @@
 			</button>
     		</div>
 		</div>
-		<div id="hiddenBlock" class="hidden">Твоя эмоция ---> </div>
+		<div id="hiddenBlock" class="hidden" >Твоя эмоция ---> </div>
 	</div>
-  		<button class="infobtn" id="info">
+  		<button class="infobtn" id="info" onclick="infobar()">
     		i
   		</button>
-  		<button class="storybtn" id="story">
+  		<button class="storybtn" id="story" onclick="storybar()">
     		<img src="menu.png" width="200%" height="200%" class="storyicon">
   		</button>
-	
+	<div id="infobar" class="hidden"> 
+		<div id="infobar2" class="hidden"> 
+			 Наш сайт анализирует ваши сообщения с помощью нейросети и определяет их эмоции. Создано в рамках университетского проекта.
+		</div>
+		<a id="infobar3" class="hidden" href="us.html">О нас</a>
+	</div>
+	<div id="storybar" class="hidden"> 
+		<div id="storybar2" class="hidden"> 
+			 Зарегистрируйтесь, чтобы просматривать свою историю анализа текста❤️
+		</div>
+		<a id="storybar3" class="hidden" href="us.html">Регистрация</a>
+	</div>
 	<script src="script.js"></script>
 </body>
 </html>

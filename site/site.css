@@ -152,6 +152,89 @@ body {
   font-size: clamp(16px, calc(1.3vw + 1.3vh), 100px);
 }
 
+.visiblebar{
+  background: #76c9b9;
+  width: 200%;  
+  height: clamp(16px, calc((17vw + 17vh + 15px) + 1.5vh), 1500vh);  
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-top: 3%;
+  font-size: clamp(16px, calc(1.3vw + 1.3vh), 100px);
+}
+.visiblebar2{
+  color: #f5f1ee; 
+  font-size: clamp(6px, calc(1.8vw + 1.8vh), 10000px);
+  width: 42%;  
+  height: clamp(1px, calc((1vw + 1vh + 15px) + 1.5vh), 1500vh); 
+  position: absolute;
+  top: clamp(16px, calc((9vw + 9vh + 15px) + 1.5vh), 1500vh);;
+  left: 77%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  padding-top: 3%;
+  border-color:  #f5f1ee;
+}
+.visiblebar3{
+  color:  #f5f1ee; 
+  font-size: clamp(6px, calc(1.8vw + 1.8vh), 10000px);
+  width: 42%;  
+  height: clamp(1px, calc((1vw + 1vh + 15px) + 1.5vh), 1500vh); 
+  position: absolute;
+  top: clamp(16px, calc((15vw + 15vh + 15px) + 1.5vh), 1500vh);;
+  left: 77%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  text-align: right;
+  padding-top: 3%;
+  cursor: pointer;
+}
+.storybar{
+  background: #76c9b9;
+  width: 200%;  
+  height: clamp(16px, calc((17vw + 17vh + 15px) + 1.5vh), 1500vh);  
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-top: 3%;
+  font-size: clamp(16px, calc(1.3vw + 1.3vh), 100px);
+}
+.storybar2{
+  color: #f5f1ee; 
+  font-size: clamp(6px, calc(1.8vw + 1.8vh), 10000px);
+  width: 42%;  
+  height: clamp(1px, calc((1vw + 1vh + 15px) + 1.5vh), 1500vh); 
+  position: absolute;
+  top: clamp(16px, calc((9vw + 9vh + 15px) + 1.5vh), 1500vh);;
+  left: 77%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  padding-top: 3%;
+  border-color:  #f5f1ee;
+}
+.storybar3{
+  color:  #f5f1ee; 
+  font-size: clamp(6px, calc(1.8vw + 1.8vh), 10000px);
+  width: 42%;  
+  height: clamp(1px, calc((1vw + 1vh + 15px) + 1.5vh), 1500vh); 
+  position: absolute;
+  top: clamp(16px, calc((15vw + 15vh + 15px) + 1.5vh), 1500vh);;
+  left: 77%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  text-align: right;
+  padding-top: 3%;
+  cursor: pointer;
+}
+
 /* кнопка */
   .mainbtn {
   width: clamp(10px, calc(3vw + 3vh), 60px);
@@ -198,11 +281,16 @@ body {
   border: none;
   color:#f5f1ee;
   font-size: clamp(16px, calc(2vw + 2vh), 40px);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 .infobtn:hover {
   background: #76c9b9;
   transform: scale(1.05);
   box-shadow: 0 6px 12px  #ea6846;
+}
+.mainbtn:active {
+  transform: scale(0.95);
 }
 
 .storybtn{
@@ -216,6 +304,8 @@ body {
   border: none;
   color:#f5f1ee;
   font-size: clamp(16px, calc(2vw + 2vh), 40px);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 .storybtn:hover {
   background: #76c9b9;
