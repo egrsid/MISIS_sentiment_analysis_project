@@ -9,6 +9,17 @@
 <body bgcolor="#eaded2">
 	<div class="semi-circle-container" id="myRectangle">
 		<div class="content" id="myContent"> Узнай эмоцию </div>
+		<div class="model-dropdown-container">
+    <button class="model-select-button" aria-label="Выбор модели" onclick="toggleDropdown()">
+        <span class="icon-arrow-down"></span>
+    </button>
+
+    <div id="modelList" class="dropdown-content">
+        <a href="#" data-model="model_a">Model A</a>
+        <a href="#" data-model="model_b">Model B</a>
+        <a href="#" data-model="model_c">Model C</a>
+    </div>
+</div>
 		<div class="inner-semi-circle" id="myInner">
 			<div class="input-container" id="myForm">
       		<input type="text" class="text-input" placeholder="Введите текст...">

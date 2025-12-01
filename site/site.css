@@ -318,3 +318,78 @@ body {
   object-fit: contain;
 }
 
+/* Основной стиль кнопки */
+.model-select-button {
+  position: absolute;
+  right: -2vw;
+  top: 12vh;
+  width: clamp(10px, calc(3vw + 3vh), 60px); 
+  height: clamp(10px, calc(3vw + 3vh), 60px); 
+  border-radius: 50%; 
+  background-color: #ea6846; 
+  border: 1px solid #71BEAA; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.2s; 
+}
+
+
+.model-select-button:hover {
+  background-color: #71BEAA; 
+}
+
+
+.icon-arrow-down {
+ 
+  width: 12px; 
+  height: 12px; 
+  border: solid #f5f1ee; 
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  transform: rotate(45deg);
+}
+
+
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    top: 70px; 
+    left: 0;
+    min-width: 180px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    overflow: hidden;
+}
+/* Контейнер для позиционирования */
+.model-dropdown-container {
+    position: relative; 
+    display: inline-block;
+}
+
+
+.dropdown-content a {
+    color: #333; 
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+    font-family: sans-serif; 
+    transition: background-color 0.2s;
+}
+
+/* Стиль при наведении на пункт списка */
+.dropdown-content a:hover {
+    background-color: #FFFFFF;
+    color:#ea6846;
+}
+
+/* Класс для показа списка */
+.show {
+    display: block;
+}
