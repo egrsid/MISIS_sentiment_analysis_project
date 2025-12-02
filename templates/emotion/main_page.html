@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-16">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{% static 'css/site.css' %}">
+	<title>MISIS_sentiment_analysis_project</title>
+</head>
+<body bgcolor="#eaded2">
+<div class="semi-circle-container {% if result %}expanded{% endif %}" id="myRectangle">
+<div class="content {% if result %}expanded{% endif %}" id="myContent">Узнай эмоцию</div>
+
+<div class="inner-semi-circle {% if result %}expanded{% endif %}" id="myInner">
+    
+    <div class="div" id="myForm">
+        
+        <form method="post" action="" style="display: contents;">
+            {% csrf_token %}
+            
+            <input type="text" name="text" class="text-input" placeholder="Введите текст...">
+            
+            <button type="submit" class="mainbtn" id="enter">
+                <img src="{% static 'images/icon.png' %}" width="200%" height="200%" class="btnicon">
+            </button>
+        </form>
+        
+    </div>
+
+</div>
+
+<div id="hiddenBlock" class="{% if result %}visible{% else %}hidden{% endif %}">
+    Твоя эмоция ---> 
+    {% if result %}
+        <span style="color: yellow; font-weight: bold;">{{ result }}</span>
+    {% endif %}
+</div>
+	</div>
+
+	<button class="infobtn" id="info" onclick="infobar()">
+        i
+    </button>
+    <button class="storybtn" id="story" onclick="storybar()">
+        <img src="{% static 'images/menu.png' %}" width="200%" height="200%" class="storyicon">
+    </button>
+
+
+    <!-- УМНАЯ ПАНЕЛЬ ИСТОРИИ (STORYBAR) -->
+    <div id="storybar" class="hidden"> 
+    
+    <div id="storybar2" class="hidden"> 
+         {% if user.is_authenticated %}
+            Привет, {{ user.username }}! <br>
+            История сохраняется ❤️
+         {% else %}
+            Зарегистрируйтесь, чтобы просматривать свою историю анализа текста❤️
+         {% endif %}
+    </div>
+
+    <!-- КНОПКИ МЕНЮ -->
+    {% if user.is_authenticated %}
+         <!-- Кнопка ВЫХОДА -->
+         <a id="storybar_logout" class="hidden" href="{% url 'emotion:logout' %}">Выйти</a>
+    {% else %}
+         <!-- Кнопка РЕГИСТРАЦИИ -->
+         <a id="storybar_reg" class="hidden" href="{% url 'emotion:register' %}">Регистрация</a>
+         
+         <!-- Кнопка ВХОДА -->
+         <a id="storybar_login" class="hidden" href="{% url 'emotion:login' %}" style="margin-top: 10px; font-size: 14px;">Войти</a>
+    {% endif %}
+    
+</div>
+
+
+    <!-- Инфобар (тоже должен быть скрыт по умолчанию) -->
+    <div id="infobar" class="hidden">
+         <div id="infobar2" class="hidden">
+            Наш сайт анализирует ваши сообщения с помощью нейросети и определяет их эмоции.
+         </div>
+    </div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

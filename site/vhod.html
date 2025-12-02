@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-16">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="site.css">
+	<title>MISIS_sentiment_analysis_project</title>
+</head>
+<body bgcolor="#eaded2">
+	<!--основная часть -->
+	<div class="regrect" >
+		<div class="regstr"> Вход </div>
+		<input type="text" class="nameinput" placeholder="Введите имя...">
+		<input type="password" class="pasinput" placeholder="Введите пароль...">
+		<a class="reg" href="vhod.html">войти</a>
+		<a class="vhod" href="reg.html">зарегистрироваться</a>
+    	</div>
+
+   	<!--кнопки и меню -->
+	<button class="infobtn" id="info" onclick="infobar()">
+    		i
+  		</button>
+  		<button class="storybtn" id="story" onclick="storybar()">
+    		<img src="menu.png" width="200%" height="200%" class="storyicon">
+  		</button>
+	<div id="infobar" class="hidden"> 
+		<div id="infobar2" class="hidden"> 
+			 Наш сайт анализирует ваши сообщения с помощью нейросети и определяет их эмоции. Создано в рамках университетского проекта.
+		</div>
+		<a id="infobar3" class="hidden" href="main_page.html">Анализировать</a>
+	</div>
+	<div id="storybar" class="hidden"> 
+		<div id="storybar2" class="hidden"> 
+			 Зарегистрируйтесь, чтобы просматривать свою историю анализа текста❤️
+		</div>
+		<a id="storybar3" class="hidden" href="reg.html">Регистрация</a>
+	</div>
+
+
+	<script src="script.js"></script>
+</body>
