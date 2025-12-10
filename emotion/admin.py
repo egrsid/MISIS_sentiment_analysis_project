@@ -3,9 +3,9 @@ from .models import EmotionRequest
 
 @admin.register(EmotionRequest)
 class EmotionRequestAdmin(admin.ModelAdmin):
-    list_display = ('predicted_emotion', 'created_at', 'short_text')
-    list_filter = ('predicted_emotion', 'created_at')
-    search_fields = ('text',)
+    list_display = ('user', 'short_text', 'predicted_emotion', 'algorithm', 'created_at')
+    list_filter = ('algorithm', 'created_at')
+    search_fields = ('text', 'predicted_emotion')
 
     def short_text(self, obj):
         return obj.text[:50]

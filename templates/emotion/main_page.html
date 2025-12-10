@@ -2,82 +2,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-16">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="{% static 'css/site.css' %}">
-	<title>MISIS_sentiment_analysis_project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <title>Анализ Эмоций</title>
 </head>
-<body bgcolor="#eaded2">
-<div class="semi-circle-container {% if result %}expanded{% endif %}" id="myRectangle">
-<div class="content {% if result %}expanded{% endif %}" id="myContent">Узнай эмоцию</div>
+<body>
 
-<div class="inner-semi-circle {% if result %}expanded{% endif %}" id="myInner">
+    <!-- ОСНОВНОЙ ЦЕНТРАЛЬНЫЙ БЛОК -->
+    <div class="semi-circle-container {% if result %}expanded{% endif %}" id="myRectangle">
+        <div class="content" id="myContent">Узнай эмоцию</div>
+
+        <div class="inner-semi-circle" id="myInner">
+            <!-- Форма -->
+            <form method="post" action="{% url 'emotion:main_page' %}" class="main-form">
+                {% csrf_token %}
+                
+                <!-- Скрытый инпут -->
+                <input type="hidden" name="selected_model" id="selectedModelInput" value="{{ selected_model|default:'CatBoostClassifier' }}">
+
+                <!-- Белая капсула ввода -->
+                <div class="input-container">
+                    
+                    <!-- Меню выбора модели -->
+                    <div class="model-selector">
+                        <button type="button" class="model-select-button" onclick="toggleDropdown()">
+                            <span>▾</span>
+                        </button>
+                        
+                        <div class="dropdown-content" id="modelList">
+                            <button type="button" class="model-btn" onclick="selectModel('CatBoostClassifier', 'CatBoost')" data-model="CatBoostClassifier">CatBoost</button>
+                            <button type="button" class="model-btn" onclick="selectModel('LGBMClassifier', 'LGBM')" data-model="LGBMClassifier">LightGBM</button>
+                            <button type="button" class="model-btn" onclick="selectModel('LogisticRegressionCV', 'LogReg')" data-model="LogisticRegressionCV">Logistic Regression</button>
+                            <button type="button" class="model-btn" onclick="selectModel('MultinomialNB', 'MultinomialNB')" data-model="MultinomialNB">MultinomialNB</button>
+                            <button type="button" class="model-btn" onclick="selectModel('RandomForestClassifier', 'Random Forest')" data-model="RandomForestClassifier">Random Forest</button>
+                            <button type="button" class="model-btn" onclick="selectModel('RidgeClassifierCV', 'Ridge')" data-model="RidgeClassifierCV">Ridge</button>
+                            <button type="button" class="model-btn" onclick="selectModel('SVC', 'SVC')" data-model="SVC">SVC</button>
+                            <button type="button" class="model-btn" onclick="selectModel('XGBClassifier', 'XGBoost')" data-model="XGBClassifier">XGBoost</button>
+                        </div>
+                    </div>
     
-    <div class="div" id="myForm">
-        
-        <form method="post" action="" style="display: contents;">
-            {% csrf_token %}
-            
-            <input type="text" name="text" class="text-input" placeholder="Введите текст...">
-            
-            <button type="submit" class="mainbtn" id="enter">
-                <img src="{% static 'images/icon.png' %}" width="200%" height="200%" class="btnicon">
-            </button>
-        </form>
-        
+                    <!-- Поле ввода -->
+                    <input type="text" name="text" placeholder="Введите текст..." class="text-input" required autocomplete="off">
+    
+                    <!-- Кнопка отправить -->
+                    <button class="mainbtn" type="submit">
+                        <img src="{% static 'images/icon.png' %}" class="btnicon">
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
-</div>
-
-<div id="hiddenBlock" class="{% if result %}visible{% else %}hidden{% endif %}">
-    Твоя эмоция ---> 
+    <!-- БЛОК РЕЗУЛЬТАТА -->
     {% if result %}
-        <span style="color: yellow; font-weight: bold;">{{ result }}</span>
+    <div id="hiddenBlock" class="visible">
+        {{ result }}
+    </div>
     {% endif %}
-</div>
-	</div>
 
-	<button class="infobtn" id="info" onclick="infobar()">
-        i
-    </button>
-    <button class="storybtn" id="story" onclick="storybar()">
-        <img src="{% static 'images/menu.png' %}" width="200%" height="200%" class="storyicon">
-    </button>
-
-
-    <!-- УМНАЯ ПАНЕЛЬ ИСТОРИИ (STORYBAR) -->
-    <div id="storybar" class="hidden"> 
+    <!-- БОКОВЫЕ КНОПКИ (Floating Action Buttons) -->
+    <button class="nav-btn infobtn" id="info" onclick="infobar()">i</button>
     
-    <div id="storybar2" class="hidden"> 
-         {% if user.is_authenticated %}
-            Привет, {{ user.username }}! <br>
-            История сохраняется ❤️
-         {% else %}
-            Зарегистрируйтесь, чтобы просматривать свою историю анализа текста❤️
-         {% endif %}
+    <button class="nav-btn storybtn" id="story" onclick="storybar()">
+        <img src="{% static 'images/menu.png' %}" class="storyicon" onerror="this.style.display='none'"> 
+    </button>
+
+    <!-- ПАНЕЛЬ ИНФОРМАЦИИ -->
+    <div id="infobar" class="overlay-panel hidden"> 
+        <div class="overlay-content">
+            <div class="overlay-title">
+                 Наш сайт анализирует ваши сообщения с помощью современных нейросетей.
+            </div>
+            <a href="{% url 'emotion:main_page' %}" class="overlay-link">На главную</a>
+        </div>
     </div>
 
-    <!-- КНОПКИ МЕНЮ -->
-    {% if user.is_authenticated %}
-         <!-- Кнопка ВЫХОДА -->
-         <a id="storybar_logout" class="hidden" href="{% url 'emotion:logout' %}">Выйти</a>
-    {% else %}
-         <!-- Кнопка РЕГИСТРАЦИИ -->
-         <a id="storybar_reg" class="hidden" href="{% url 'emotion:register' %}">Регистрация</a>
-         
-         <!-- Кнопка ВХОДА -->
-         <a id="storybar_login" class="hidden" href="{% url 'emotion:login' %}" style="margin-top: 10px; font-size: 14px;">Войти</a>
-    {% endif %}
-    
-</div>
+    <a href="{% url 'emotion:about' %}" class="nav-btn aboutbtn">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ea6846" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+    </a>
 
+    <!-- ПАНЕЛЬ ИСТОРИИ / МЕНЮ -->
+    <div id="storybar" class="overlay-panel hidden"> 
+        <div class="overlay-content">
+            <div class="overlay-title">
+                 {% if user.is_authenticated %}
+                    Привет, {{ user.username }}! <br>Твоя история запросов:
+                 {% else %}
+                    Зарегистрируйтесь, чтобы сохранять историю ❤️
+                 {% endif %}
+            </div>
 
-    <!-- Инфобар (тоже должен быть скрыт по умолчанию) -->
-    <div id="infobar" class="hidden">
-         <div id="infobar2" class="hidden">
-            Наш сайт анализирует ваши сообщения с помощью нейросети и определяет их эмоции.
-         </div>
+            {% if user.is_authenticated %}
+                <div class="history-container">
+                {% for req in user.emotionrequest_set.all reversed %}
+                    <div class="history-card">
+                        <span class="history-meta">{{ req.created_at|date:"d.m.Y H:i" }} • {{ req.algorithm|default:"CatBoost" }}</span>
+                        <span class="history-text">{{ req.text }}</span>
+                        <span class="history-result">→ {{ req.predicted_emotion }}</span>
+                    </div>
+                {% empty %}
+                    <p>Пока нет запросов</p>
+                {% endfor %}
+                </div>
+                <a href="{% url 'emotion:logout' %}" class="overlay-link" style="margin-top: 30px;">Выйти</a>
+            {% else %}
+                <a href="{% url 'emotion:register' %}" class="overlay-link">Регистрация</a>
+                <a href="{% url 'emotion:login' %}" class="overlay-link">Войти</a>
+            {% endif %}
+        </div>
     </div>
-<script src="{% static 'js/script.js' %}"></script>
+
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

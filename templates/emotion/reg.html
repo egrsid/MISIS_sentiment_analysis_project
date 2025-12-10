@@ -1,71 +1,73 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/site.css' %}">
     <title>Регистрация - MISIS Emotion</title>
 </head>
-<body style="background-color: #eaded2;">
+<body>
 
-    <!-- === БЛОК РЕГИСТРАЦИИ === -->
+    <!-- КАРТОЧКА РЕГИСТРАЦИИ -->
     <div class="regrect">
         <div class="regstr"> Регистрация </div>
         
         <form method="post" action="{% url 'emotion:register' %}">
             {% csrf_token %}
+            <input type="text" name="username" placeholder="Придумайте логин" required>
+            <input type="password" name="password" placeholder="Придумайте пароль" required>
+            <input type="password" name="confirm_password" placeholder="Повторите пароль" required>
 
-            <input type="text" name="username" class="nameinput" placeholder="Придумайте логин" required >
-            
-            <input type="password" name="password" class="pasinput" placeholder="Придумайте пароль" required >
-            
-            <input type="password" name="confirm_password" class="pasinput1" placeholder="Повторите пароль" required >
-
-            <button type="submit" class="reg" >
-                зарегистрироваться
-            </button>
+            <button type="submit" class="reg">Зарегистрироваться</button>
         </form>
 
-        <div >
-            <a class="vhod" href="{% url 'emotion:login' %}">Войти, если есть аккаунт</a>
-        </div>
+        <a class="vhod" href="{% url 'emotion:login' %}">Войти, если есть аккаунт</a>
     </div>
 
-    <!-- === КНОПКИ И МЕНЮ === -->
-    <button class="infobtn" id="info" onclick="infobar()">i</button>
-    
-    <button class="storybtn" id="story" onclick="storybar()">
+    <!-- БОКОВЫЕ КНОПКИ (FAB) -->
+    <button class="nav-btn infobtn" id="info" onclick="infobar()">i</button>
+    <button class="nav-btn storybtn" id="story" onclick="storybar()">
         <img src="{% static 'images/menu.png' %}" class="storyicon" onerror="this.style.display='none'"> 
     </button>
 
-    <!-- Инфобар -->
-    <div id="infobar" class="hidden"> 
-        <div id="infobar2" class="hidden"> 
-             Наш сайт анализирует ваши сообщения с помощью нейросети.
+    <!-- ИНФОБАР -->
+    <div id="infobar" class="overlay-panel hidden"> 
+        <div class="overlay-content">
+            <div class="overlay-title">
+                 Наш сайт анализирует ваши сообщения с помощью нейросети.
+            </div>
+            <a href="{% url 'emotion:main_page' %}" class="overlay-link">На главную</a>
         </div>
-        <a id="infobar3" href="{% url 'emotion:main_page' %}" style="color: white; display: block; margin-top: 20px;">На главную</a>
     </div>
 
-    <!-- Сторибар (Меню) -->
-    <div id="storybar" class="hidden"> 
-        <div id="storybar2" class="hidden"> 
-             {% if user.is_authenticated %}
-                Привет, {{ user.username }}! <br> Твоя история сохраняется.
-             {% else %}
-                Зарегистрируйтесь, чтобы просматривать свою историю ❤️
-             {% endif %}
-        </div>
+    <a href="{% url 'emotion:about' %}" class="nav-btn aboutbtn">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ea6846" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+    </a>
 
-        {% if user.is_authenticated %}
-            <a id="storybar_logout" href="{% url 'emotion:logout' %}" style="color: white; display: block; margin-top: 20px;">Выйти</a>
-        {% else %}
-            <a id="storybar_reg" href="{% url 'emotion:register' %}" style="color: white; display: block; margin-top: 20px;">Регистрация</a>
-            <a id="storybar_login" href="{% url 'emotion:login' %}" style="color: white; display: block; margin-top: 10px;">Войти</a>
-        {% endif %}
+    <!-- МЕНЮ -->
+    <div id="storybar" class="overlay-panel hidden"> 
+        <div class="overlay-content">
+            <div class="overlay-title">
+                 {% if user.is_authenticated %}
+                    Привет, {{ user.username }}!
+                 {% else %}
+                    Зарегистрируйтесь, чтобы просматривать историю ❤️
+                 {% endif %}
+            </div>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'emotion:logout' %}" class="overlay-link">Выйти</a>
+            {% else %}
+                <a href="{% url 'emotion:register' %}" class="overlay-link">Регистрация</a>
+                <a href="{% url 'emotion:login' %}" class="overlay-link">Войти</a>
+            {% endif %}
+        </div>
     </div>
 
     <script src="{% static 'js/script.js' %}"></script>
-
 </body>
 </html>
