@@ -1,8 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User  # <--- Не забудь импорт!
+from django.contrib.auth.models import User
 
 class EmotionRequest(models.Model):
-    # Добавляем связь с пользователем
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Пользователь")
     
     text = models.TextField(verbose_name="Текст сообщения")

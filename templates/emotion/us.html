@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <!-- КАРТОЧКА "О НАС" -->
+    <!-- о нас -->
     <div class="regrect us-container">
         <div class="regstr" style="margin-bottom: 40px;">О нас</div>
         
@@ -17,7 +17,7 @@
             
             <div class="us-team">
                 
-                <!-- Участник 1 (ЕГОР) - ЗАНЯТ -->
+                <!-- егор -->
                 <div class="team-member tooltip-container">
                     <div class="avatar">
                         <img src="{% static 'images/egor.jpg' %}" onerror="this.style.display='none'">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <!-- Участник 2 (НИКИТА) - ЗАНЯТ -->
+                <!-- никита -->
                 <div class="team-member tooltip-container">
                     <div class="avatar">
                         <img src="{% static 'images/nikita.jpg' %}" onerror="this.style.display='none'">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <!-- Участник 3 (СЕРГЕЙ) - ЗАНЯТ -->
+                <!-- сергей -->
                 <div class="team-member tooltip-container">
                     <div class="avatar">
                         <img src="{% static 'images/sergey.jpg' %}" onerror="this.style.display='none'">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <!-- Участник 4 (ВЕРОНИКА) - ОТКРЫТА -->
+                <!-- вероника -->
                 <div class="team-member tooltip-container">
                     <div class="avatar">
                         <img src="{% static 'images/veronika.jpg' %}" onerror="this.style.display='none'">
@@ -95,7 +95,7 @@
         <a class="vhod" href="{% url 'emotion:main_page' %}" style="font-size: 18px; margin-top: 40px;">Вернуться на главную</a>
     </div>
 
-    <!-- КНОПКИ -->
+    <!-- кнопки -->
     <button class="nav-btn infobtn" id="info" onclick="infobar()">i</button>
     <a href="{% url 'emotion:about' %}" class="nav-btn aboutbtn">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ea6846" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -107,7 +107,7 @@
         <img src="{% static 'images/menu.png' %}" class="storyicon" onerror="this.style.display='none'"> 
     </button>
 
-    <!-- ПАНЕЛИ -->
+    <!-- информация -->
     <div id="infobar" class="overlay-panel hidden"> 
         <div class="overlay-content">
             <div class="overlay-title">Наш сайт анализирует ваши сообщения с помощью нейросети.</div>

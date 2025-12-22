@@ -4,7 +4,6 @@ import numpy as np
 from django.conf import settings
 
 MODELS_FILES = {
-    "CatBoostClassifier": "CatBoostClassifier.pickle",
     "LGBMClassifier": "LGBMClassifier.pickle", 
     "LogisticRegressionCV": "LogisticRegressionCV.pickle",
     "MultinomialNB": "MultinomialNB.pickle",
@@ -19,7 +18,7 @@ LOADED_MODELS = {}
 
 def get_model(model_name):
     if model_name not in LOADED_MODELS:
-        filename = MODELS_FILES.get(model_name, MODELS_FILES["CatBoostClassifier"])
+        filename = MODELS_FILES.get(model_name, MODELS_FILES["LGBMClassifier"])
         path = os.path.join(MODELS_DIR, filename)
         
         with open(path, "rb") as f:
@@ -27,11 +26,10 @@ def get_model(model_name):
             
     return LOADED_MODELS[model_name]
 
-def predict_emotion(text: str, model_name: str = "CatBoostClassifier") -> str:
+def predict_emotion(text: str, model_name: str = "LGBMClassifier") -> str:
     model = get_model(model_name)
     
     messages = [text]
-    # Предсказываем класс (0 или 1)
     y = model.predict(messages)[0]
     
     label = "good" if y == 1 else "bad"

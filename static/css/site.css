@@ -1,6 +1,4 @@
-/* =========================================
-   1. БАЗОВЫЕ НАСТРОЙКИ
-   ========================================= */
+/*фон и тд*/
 body {
     background-image: url('../images/fon.png');
     background-size: cover;
@@ -12,9 +10,7 @@ body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* =========================================
-   2. ГЛАВНЫЙ БЛОК (ОРАНЖЕВЫЙ)
-   ========================================= */
+/* главный блок */
 .semi-circle-container {
     width: 50%;
     height: 25%;
@@ -74,9 +70,7 @@ body {
     justify-content: center;
 }
 
-/* =========================================
-   3. СТРОКА ВВОДА
-   ========================================= */
+/* ввод текста */
 .input-container {
     display: flex;
     align-items: center;
@@ -154,9 +148,7 @@ body {
 }
 .btnicon { width: 100%; height: 100%; object-fit: contain; }
 
-/* =========================================
-   4. РЕЗУЛЬТАТ
-   ========================================= */
+/* результат */
 #hiddenBlock.visible {
     display: block; background: #76c9b9;
     border: none; border-radius: 20px;
@@ -175,9 +167,7 @@ body {
     to { opacity: 1; transform: translate(-50%, 0); }
 }
 
-/* =========================================
-   5. БОКОВЫЕ КНОПКИ (FAB)
-   ========================================= */
+/*кнопки */
 .nav-btn {
     position: fixed;
     width: 60px; height: 60px;
@@ -227,9 +217,7 @@ body {
     filter: brightness(0) invert(1);
 }
 
-/* =========================================
-   6. ВЫПЛЫВАЮЩИЕ ПАНЕЛИ
-   ========================================= */
+/*информация */
 .overlay-panel {
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
@@ -271,9 +259,7 @@ body {
 .history-text { font-size: 18px; display: block; margin-bottom: 5px; font-weight: bold; }
 .history-result { font-size: 16px; color: #fff; }
 
-/* =========================================
-   7. СТРАНИЦЫ ВХОДА / РЕГИСТРАЦИИ
-   ========================================= */
+/* вход и регистрация*/
 .regrect {
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
@@ -314,12 +300,10 @@ body {
 }
 .regrect a.vhod:hover { color: white; border-bottom-style: solid; }
 
-/* =========================================
-   8. СТИЛИ ДЛЯ СТРАНИЦЫ О НАС (КОМАНДА)
-   ========================================= */
+/* о нас */
 .us-container {
     width: 90%;
-    max-width: 1000px; /* Широкая карточка для 4 участников */
+    max-width: 1000px; 
     padding: 50px;
 }
 .us-text {
@@ -330,7 +314,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px; /* Больше воздуха между карточками */
+    gap: 30px; 
     margin-top: 10px;
 }
 
@@ -338,7 +322,7 @@ body {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 25px;
     padding: 25px;
-    width: 200px; /* Чуть шире карточка */
+    width: 200px; 
     text-align: center;
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
@@ -355,7 +339,7 @@ body {
 }
 
 .avatar {
-    width: 120px; /* Крупнее аватарка */
+    width: 120px; 
     height: 120px;
     border-radius: 50%;
     background: white;
@@ -384,7 +368,7 @@ body {
 }
 
 .member-name {
-    font-size: 20px; /* Крупнее имя */
+    font-size: 20px; 
     font-weight: bold;
     color: white;
     margin-bottom: 8px;
@@ -397,7 +381,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-weight: 600;
-    background: rgba(0,0,0,0.1); /* Подложка под роль */
+    background: rgba(0,0,0,0.1); 
     padding: 4px 10px;
     border-radius: 10px;
     display: inline-block;
@@ -405,18 +389,16 @@ body {
 
 
 
-/* =========================================
-   9. ТУЛТИП ДЛЯ ВЕРОНИКИ
-   ========================================= */
+/* вероника */
 .tooltip-container {
-    position: relative; /* Важно для позиционирования тултипа */
+    position: relative; 
 }
 
 .tooltip {
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    bottom: 105%; /* Показываем НАД карточкой */
+    bottom: 105%; 
     left: 50%;
     transform: translateX(-50%) translateY(10px);
     
@@ -428,7 +410,7 @@ body {
     text-align: center;
     z-index: 10;
     
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Эффект пружины */
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
 }
 
 .tooltip-container:hover .tooltip {
@@ -447,7 +429,7 @@ body {
 
 .tooltip-link {
     display: inline-block;
-    background: #0088cc; /* Цвет Телеграма */
+    background: #0088cc; 
     color: white;
     text-decoration: none;
     padding: 6px 12px;
@@ -460,7 +442,7 @@ body {
     background: #0077b5;
 }
 
-/* Стрелочка снизу */
+/* стрелка */
 .tooltip-arrow {
     position: absolute;
     bottom: -6px;

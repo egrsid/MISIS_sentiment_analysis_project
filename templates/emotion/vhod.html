@@ -9,13 +9,13 @@
 </head>
 <body>
 
-    <!-- КАРТОЧКА ВХОДА -->
+    <!-- вход -->
     <div class="regrect">
         <div class="regstr"> Вход </div>
         
         <form method="post" action="{% url 'emotion:login' %}">
             {% csrf_token %}
-            <!-- Используем новые стили капсульных инпутов -->
+            <!-- ввод -->
             <input type="text" name="username" placeholder="Введите имя..." required>
             <input type="password" name="password" placeholder="Введите пароль..." required>
             
@@ -25,13 +25,13 @@
         <a class="vhod" href="{% url 'emotion:register' %}">Зарегистрироваться</a>
     </div>
 
-    <!-- БОКОВЫЕ КНОПКИ (FAB) -->
+    <!-- кнопки -->
     <button class="nav-btn infobtn" id="info" onclick="infobar()">i</button>
     <button class="nav-btn storybtn" id="story" onclick="storybar()">
         <img src="{% static 'images/menu.png' %}" class="storyicon" onerror="this.style.display='none'">
     </button>
 
-    <!-- ИНФОБАР (Как на главной) -->
+    <!-- информация -->
     <div id="infobar" class="overlay-panel hidden"> 
         <div class="overlay-content">
             <div class="overlay-title">
@@ -47,8 +47,6 @@
             <circle cx="12" cy="7" r="4"></circle>
         </svg>
     </a>
-
-    <!-- МЕНЮ (Как на главной) -->
     <div id="storybar" class="overlay-panel hidden"> 
         <div class="overlay-content">
             <div class="overlay-title">

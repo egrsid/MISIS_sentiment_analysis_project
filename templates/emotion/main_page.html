@@ -9,19 +9,19 @@
 </head>
 <body>
 
-    <!-- ОСНОВНОЙ ЦЕНТРАЛЬНЫЙ БЛОК -->
+    <!-- Основная часть -->
     <div class="semi-circle-container {% if result %}expanded{% endif %}" id="myRectangle">
         <div class="content" id="myContent">Узнай эмоцию</div>
 
         <div class="inner-semi-circle" id="myInner">
-            <!-- Форма -->
+            <!-- Ввод текста -->
             <form method="post" action="{% url 'emotion:main_page' %}" class="main-form">
                 {% csrf_token %}
                 
                 <!-- Скрытый инпут -->
-                <input type="hidden" name="selected_model" id="selectedModelInput" value="{{ selected_model|default:'CatBoostClassifier' }}">
+                <input type="hidden" name="selected_model" id="selectedModelInput" value="{{ selected_model|default:'LGBMClassifier' }}">
 
-                <!-- Белая капсула ввода -->
+                <!-- контейнер ввода -->
                 <div class="input-container">
                     
                     <!-- Меню выбора модели -->
@@ -31,7 +31,6 @@
                         </button>
                         
                         <div class="dropdown-content" id="modelList">
-                            <button type="button" class="model-btn" onclick="selectModel('CatBoostClassifier', 'CatBoost')" data-model="CatBoostClassifier">CatBoost</button>
                             <button type="button" class="model-btn" onclick="selectModel('LGBMClassifier', 'LGBM')" data-model="LGBMClassifier">LightGBM</button>
                             <button type="button" class="model-btn" onclick="selectModel('LogisticRegressionCV', 'LogReg')" data-model="LogisticRegressionCV">Logistic Regression</button>
                             <button type="button" class="model-btn" onclick="selectModel('MultinomialNB', 'MultinomialNB')" data-model="MultinomialNB">MultinomialNB</button>
@@ -45,7 +44,7 @@
                     <!-- Поле ввода -->
                     <input type="text" name="text" placeholder="Введите текст..." class="text-input" required autocomplete="off">
     
-                    <!-- Кнопка отправить -->
+                    <!-- Кнопка ввода -->
                     <button class="mainbtn" type="submit">
                         <img src="{% static 'images/icon.png' %}" class="btnicon">
                     </button>
@@ -54,21 +53,21 @@
         </div>
     </div>
 
-    <!-- БЛОК РЕЗУЛЬТАТА -->
+    <!-- Результат -->
     {% if result %}
     <div id="hiddenBlock" class="visible">
         {{ result }}
     </div>
     {% endif %}
 
-    <!-- БОКОВЫЕ КНОПКИ (Floating Action Buttons) -->
+    <!-- кнопки информации -->
     <button class="nav-btn infobtn" id="info" onclick="infobar()">i</button>
     
     <button class="nav-btn storybtn" id="story" onclick="storybar()">
         <img src="{% static 'images/menu.png' %}" class="storyicon" onerror="this.style.display='none'"> 
     </button>
 
-    <!-- ПАНЕЛЬ ИНФОРМАЦИИ -->
+    <!-- информация -->
     <div id="infobar" class="overlay-panel hidden"> 
         <div class="overlay-content">
             <div class="overlay-title">
@@ -85,7 +84,7 @@
         </svg>
     </a>
 
-    <!-- ПАНЕЛЬ ИСТОРИИ / МЕНЮ -->
+    <!-- меню истории -->
     <div id="storybar" class="overlay-panel hidden"> 
         <div class="overlay-content">
             <div class="overlay-title">

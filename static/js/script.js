@@ -1,6 +1,4 @@
-/* =========================================
-   УПРАВЛЕНИЕ МЕНЮ И ИНФОБАРОМ
-   ========================================= */
+/* УПРАВЛЕНИЕ МЕНЮ И ИНФОБАРОМ */
 function storybar() {
     document.getElementById("storybar").classList.toggle("hidden");
 }
@@ -9,32 +7,24 @@ function infobar() {
     document.getElementById("infobar").classList.toggle("hidden");
 }
 
-/* =========================================
-   ВЫБОР МОДЕЛИ (DROPDOWN)
-   ========================================= */
+/* Выбор модели */
 
-// 1. Открыть/Закрыть меню С ПРОВЕРКОЙ
+// 1. Открыть/Закрыть меню 
 function toggleDropdown() {
     var list = document.getElementById("modelList");
-    
-    // Если мы открываем меню (оно было закрыто)
     if (!list.classList.contains("show")) {
-        // Сначала смотрим, какая модель сейчас в инпуте
         const input = document.getElementById('selectedModelInput');
-        // Если инпут есть, берем значение. Если нет - берем дефолт.
         const currentVal = (input && input.value) ? input.value : "CatBoostClassifier";
-        
-        // Принудительно красим нужную кнопку перед показом
         const buttons = document.querySelectorAll('.model-btn');
         buttons.forEach(btn => {
-            btn.classList.remove('active-model'); // Сброс всех
+            btn.classList.remove('active-model'); 
             if (btn.getAttribute('data-model') === currentVal) {
-                btn.classList.add('active-model'); // Актив нужной
+                btn.classList.add('active-model'); 
             }
         });
     }
     
-    // Теперь показываем список
+    // показываем список
     list.classList.toggle("show");
 }
 
@@ -53,13 +43,11 @@ window.onclick = function(event) {
 
 // 3. ВЫБОР МОДЕЛИ (При клике на пункт меню)
 function selectModel(modelKey, modelName) {
-    // А. Записываем выбор в скрытый инпут
     const input = document.getElementById('selectedModelInput');
     if (input) {
         input.value = modelKey;
     }
-
-    // Б. Визуально переключаем (чтобы пользователь сразу увидел)
+    // Б. переключаем 
     const buttons = document.querySelectorAll('.model-btn');
     buttons.forEach(btn => {
         btn.classList.remove('active-model');
@@ -67,8 +55,6 @@ function selectModel(modelKey, modelName) {
             btn.classList.add('active-model');
         }
     });
-
-    // В. Закрываем меню
     document.getElementById("modelList").classList.remove("show");
     console.log("Выбрана модель: " + modelKey);
 }
@@ -87,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
     
-    // Доп. логика для анимации прямоугольника при наличии результата
+    // для анимации прямоугольника
     const hiddenBlock = document.getElementById("hiddenBlock");
     if (hiddenBlock && window.getComputedStyle(hiddenBlock).display !== 'none') {
         const rect = document.getElementById("myRectangle");

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <!-- КАРТОЧКА РЕГИСТРАЦИИ -->
+    <!-- Регистрация -->
     <div class="regrect">
         <div class="regstr"> Регистрация </div>
         
@@ -25,13 +25,13 @@
         <a class="vhod" href="{% url 'emotion:login' %}">Войти, если есть аккаунт</a>
     </div>
 
-    <!-- БОКОВЫЕ КНОПКИ (FAB) -->
+    <!-- кнопки информации -->
     <button class="nav-btn infobtn" id="info" onclick="infobar()">i</button>
     <button class="nav-btn storybtn" id="story" onclick="storybar()">
         <img src="{% static 'images/menu.png' %}" class="storyicon" onerror="this.style.display='none'"> 
     </button>
 
-    <!-- ИНФОБАР -->
+    <!-- информация -->
     <div id="infobar" class="overlay-panel hidden"> 
         <div class="overlay-content">
             <div class="overlay-title">
@@ -48,7 +48,7 @@
         </svg>
     </a>
 
-    <!-- МЕНЮ -->
+    <!-- меню -->
     <div id="storybar" class="overlay-panel hidden"> 
         <div class="overlay-content">
             <div class="overlay-title">
